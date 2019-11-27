@@ -23,6 +23,7 @@ export class AuthService {
   logout() {
     this.isAuth = false;
     localStorage.removeItem("token");
+    this.router.navigate(["/"]);
     alert("your are logged out");
   }
 
