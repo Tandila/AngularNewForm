@@ -1,0 +1,45 @@
+<div class="container">
+  <h1>User Registration!</h1>
+
+  <form class="card" [formGroup]="form" (ngSubmit)="addUser()">
+    <h1>Registration</h1>
+
+    <div class="form-control">
+      <label>username</label>
+      <input type="text" placeholder="username" formControlName="username" />
+      <div
+        *ngIf="form.get('username').invalid && form.get('username').touched"
+        class="validation"
+      >
+        <small *ngIf="form.get('username').errors.required">
+          username can't be blank
+        </small>
+      </div>
+    </div>
+
+    <div class="form-control">
+      <label>password</label>
+      <input
+        type="password"
+        placeholder="password"
+        formControlName="password"
+      />
+
+      <div
+        *ngIf="form.get('password').invalid && form.get('password').touched"
+        class="validation"
+      >
+        <small *ngIf="form.get('password').errors.required">
+          password can't be blank
+        </small>
+        <small *ngIf="form.get('password').errors.minlength">
+          enter valid password min lenght
+          {{ form.get("password").errors.minlength.requiredLength }}. now simbol
+          quantity {{ form.get("password").errors.minlength.actualLength }}
+        </small>
+      </div>
+    </div>
+
+    <button class="btn" type="submit" [disabled]="form.invalid">submit</button>
+  </form>
+</div>
